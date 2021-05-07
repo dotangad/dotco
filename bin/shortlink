@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+const path = require('path')
+require('dotenv').config({ path: path.join(__dirname, '../.env') })
+const crypto = require('crypto')
+const Airtable = require('airtable-plus')
+
+const {
+  AIRTABLE_API_KEY: apiKey,
+  AIRTABLE_BASE_ID: baseID,
+  AIRTABLE_TABLE_NAME: tableName,
+} = process.env
+
+const airtable = new Airtable({ apiKey, baseID, tableName })
+
+let [target, slug] = process.argv.slice(2)
+slug = slug || crypto.randomBytes(5).toString('hex')
+
+airtable
+  .create({ target, slug })
+  .then(() => {
+    console.log(`Created ${process.env.MAIN_DOMAIN}/${slug}`)
+  })
+  .catch((e) => console.error(e))
