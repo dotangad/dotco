@@ -18,9 +18,9 @@ app.get('/gh/:repo', async (req, res) => {
     const { repo } = req.params
     const { GITHUB_USERNAME: ghUsername } = process.env
 
-    const { ok: repoExists } = await fetch(
-      `https://api.github.com/repos/${ghUsername}/${repo}`
-    )
+    // const { ok: repoExists } = await fetch(
+    //   `https://api.github.com/repos/${ghUsername}/${repo}`
+    // )
 
     if (repoExists) {
       return res.redirect(302, `https://github.com/${ghUsername}/${repo}`)
