@@ -1,6 +1,6 @@
 # dotco
 
-A URL shortener using Airtable and Vercel.
+A URL shortener using Airtable and Vercel. Fork of [someshkar/dotco](https://github.com/someshkar/dotco).
 
 ## Setup
 
